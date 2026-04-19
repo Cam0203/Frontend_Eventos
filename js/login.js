@@ -10,7 +10,7 @@
     }
 
     try {
-        const respuesta = await fetch("https://backend-eventos-rth3.onrender.com/login", {
+        const respuesta = await fetch("https://backend-eventos-rth3.onrender.com/login/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
