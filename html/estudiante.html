@@ -1,0 +1,96 @@
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Estudiante - CUL</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/estudiante.css">
+    </head>
+    <body>
+
+    <div class="student-layout">
+
+        <!-- Sidebar -->
+        <app-sidebar></app-sidebar>
+
+        <!-- Main -->
+        <main class="main-content">
+        <header class="topbar">
+            <div>
+            <h1>Panel del Estudiante</h1>
+            <p>Consulta e inscríbete en los eventos académicos e institucionales</p>
+            </div>
+
+            <div class="student-badge">
+            <span id="bienvenida">Bienvenido</span>
+            </div>
+        </header>
+
+        <section class="hero-card">
+            <div class="hero-overlay">
+            <div class="hero-text">
+                <h2>Participa en la vida académica CUL</h2>
+                <p>
+                Explora los eventos disponibles, inscríbete y mantente conectado
+                con las actividades institucionales, académicas y formativas.
+                </p>
+                <a href="#events-section" class="btn-hero">Ver eventos</a>
+            </div>
+            </div>
+        </section>
+
+        <section class="stats-grid">
+            <article class="stat-card">
+            <div class="stat-icon blue">📚</div>
+            <div>
+                <h3 id="totalEventos">0</h3>
+                <p>Eventos disponibles</p>
+            </div>
+            </article>
+
+            <article class="stat-card">
+            <div class="stat-icon orange">📝</div>
+            <div>
+                <h3 id="misInscripciones">0</h3>
+                <p>Mis inscripciones</p>
+            </div>
+            </article>
+
+            <article class="stat-card">
+            <div class="stat-icon light">⏰</div>
+            <div>
+                <h3 id="proximosEventos">0</h3>
+                <p>Próximos eventos</p>
+            </div>
+            </article>
+        </section>
+
+        <section class="tools-card">
+            <div class="tools-header">
+            <div>
+                <h3>Buscar eventos</h3>
+                <p>Encuentra fácilmente actividades de interés.</p>
+            </div>
+            </div>
+
+            <div class="search-row">
+            <app-buscador id="buscadorEventos" placeholder="Buscar por nombre del evento..."></app-buscador>
+            <button class="btn-secondary" onclick="mostrarTodosEventos()">Mostrar todos</button>
+            </div>
+        </section>
+
+        <section class="events-section" id="events-section">
+            <div class="section-header center">
+            <h3>Eventos disponibles</h3>
+            <p>Consulta los detalles e inscríbete en los eventos activos.</p>
+            </div>
+
+            <app-lista-eventos modo="estudiante" id="listaEventos"></app-lista-eventos>
+        </section>
+        </main>
+    </div>
+    <script src="/proyecto/js/components.js"></script>
+    <script src="/proyecto/js/estudiante.js"></script>
+    </body>
+    </html>

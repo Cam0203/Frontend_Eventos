@@ -1,0 +1,118 @@
+
+
+    .student-layout {
+    display: flex;
+    min-height: 100vh;
+    }
+
+
+
+    .student-badge {
+    background: white;
+    padding: 12px 18px;
+    border-radius: var(--radio-pill);
+    box-shadow: var(--sombra-suave);
+    border: 1px solid #e3edf9;
+    }
+
+    .student-badge span {
+    font-weight: 600;
+    color: var(--azul-cul);
+    }
+
+
+    .btn-search,
+    .btn-secondary,
+    .btn-inscribir {
+    border: none;
+    padding: 12px 20px;
+    border-radius: var(--radio-pill);
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+    }
+
+    .btn-search {
+    background: var(--azul-cul);
+    color: white;
+    }
+
+    .btn-search:hover {
+    background: var(--azul-cul-sec);
+    transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+    background: #eef4fc;
+    color: var(--azul-cul);
+    border: 1px solid var(--azul-borde);
+    }
+
+    .btn-secondary:hover {
+    background: #e6effb;
+    }
+
+    /* EVENTS */
+
+    .btn-inscribir {
+    margin-top: 14px;
+    background: var(--naranja-cul);
+    color: white;
+    }
+
+    .btn-inscribir:hover {
+    background: var(--naranja-oscuro);
+    transform: translateY(-2px);
+    }
+
+    .btn-inscrito {
+    margin-top: 14px;
+    background: var(--verde-suave);
+    color: var(--verde-texto);
+    border: 1px solid #cfead8;
+    padding: 12px 20px;
+    border-radius: var(--radio-pill);
+    font-weight: 700;
+    cursor: default;
+    }
+
+    .empty-state {
+    grid-column: 1 / -1;
+    background: #fbfdff;
+    border: 1px dashed var(--azul-borde);
+    border-radius: 18px;
+    padding: 40px 24px;
+    text-align: center;
+    color: var(--gris-texto);
+    }
+
+    .empty-state h4 {
+    color: var(--azul-cul);
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+    }
+
+    .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+    
+
+    @media (max-width: 600px) {
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hero-overlay {
+        padding: 26px 20px;
+    }
+
+    .hero-text h2 {
+        font-size: 1.6rem;
+    }
+
+    .tools-card,
+    .events-section {
+        padding: 20px;
+    }
+    }

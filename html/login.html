@@ -1,0 +1,53 @@
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portal CUL - Login</title>
+    <link rel="stylesheet" href="/proyecto/css/global.css">
+    <link rel="stylesheet" href="../css/login.css" />
+    </head>
+    <body>
+
+    <div class="background-animation"></div>
+
+    <section class="login-container">
+        <div class="login-left">
+        <div class="form-box">
+            <h1>Portal CUL</h1>
+            <p class="subtitle">Accede con tu correo institucional</p>
+
+            <form>
+            <div class="input-group">
+                <input type="email" id="correo" placeholder="correo_institucional" required />
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Contraseña" required />
+            </div>
+
+            <button type="button" class="btn-login" onclick="login()">
+                Iniciar sesión
+            </button>
+
+            <p id="error" class="error-message"></p>
+            
+            <p class="register-text">
+                ¿No tienes cuenta? <a href="#">Regístrate</a>
+            </p>
+            </form>
+        </div>
+        </div>
+
+        <div class="login-right">
+        <div class="overlay-content">
+            <h2>Bienvenido</h2>
+            <p>Portal académico y administrativo</p>
+            <a href="#" class="btn-register">Crear cuenta</a>
+        </div>
+        </div>
+    </section>
+
+    <script src="../js/login.js"></script>
+    </body>
+    </html>

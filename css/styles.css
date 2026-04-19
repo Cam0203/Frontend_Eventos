@@ -1,0 +1,401 @@
+/* ============================= */
+/* Estilo general de la página */
+/* ============================= */
+
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+overflow-x:hidden;
+}
+
+
+/* ============================= */
+/* Contenedor del video de fondo */
+/* ============================= */
+
+.video-fondo{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-2;
+overflow:hidden;
+}
+
+
+/* Ajuste del video */
+
+.video-fondo video{
+width:100%;
+height:100%;
+object-fit:cover;
+filter:blur(6px) brightness(0.9);
+}
+
+
+/* ============================= */
+/* Filtro de color sobre el video */
+/* ============================= */
+
+.overlay{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(
+rgba(255,255,255,0.85),
+rgba(4,35,88,0.25)
+);
+z-index:-1;
+}
+
+
+/* ============================= */
+/* Barra azul superior */
+/* ============================= */
+
+.top-bar{
+width:100%;
+height:20px;
+background:#042358;
+}
+
+
+/* ============================= */
+/* Encabezado principal */
+/* ============================= */
+
+.header{
+background:white;
+border-bottom:1px solid #ddd;
+}
+
+
+/* Contenedor del header */
+
+.header-contenedor{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:10px 40px;
+}
+
+
+/* ============================= */
+/* Logo de la universidad */
+/* ============================= */
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo img{
+height:80px;
+object-fit:contain;
+}
+
+
+/* ============================= */
+/* Menú de navegación */
+/* ============================= */
+
+nav ul{
+display:flex;
+gap:30px;
+list-style:none;
+margin:0;
+padding:0;
+}
+
+
+/* Opciones del menú */
+
+nav ul li{
+font-size:14px;
+color:#777;
+cursor:pointer;
+position:relative;
+padding-bottom:6px;
+transition:0.3s;
+}
+
+
+/* Enlaces del menú */
+
+nav ul li a{
+text-decoration:none;
+color:#555;
+font-size:15px;
+font-weight:500;
+transition:0.3s;
+}
+
+
+/* Color al pasar el cursor */
+
+nav ul li a:hover{
+color:#042358;
+}
+
+
+/* Barra animada debajo */
+
+nav ul li::after{
+content:"";
+position:absolute;
+left:50%;
+bottom:-6px;
+width:0%;
+height:2px;
+background:#042358;
+transform:translateX(-50%);
+transition:0.3s;
+}
+
+
+/* Aparece la barra */
+
+nav ul li:hover::after{
+width:100%;
+}
+
+
+/* Opción activa */
+
+nav ul li.activo a{
+color:#042358;
+font-weight:600;
+}
+
+nav ul li.activo::after{
+width:100%;
+}
+
+
+/* ============================= */
+/* Sección principal */
+/* ============================= */
+
+.hero{
+text-align:center;
+padding:140px 20px;
+color:#042358;
+background:rgba(255,255,255,0.2);
+backdrop-filter:blur(4px);
+border-radius:10px;
+}
+
+
+/* Título principal */
+
+.hero h1{
+font-size:42px;
+color:#042358;
+font-weight:bold;
+}
+
+
+/* Texto principal */
+
+.hero p{
+font-size:18px;
+margin-top:10px;
+}
+
+
+/* ============================= */
+/* Botones principales */
+/* ============================= */
+
+.botones{
+margin-top:30px;
+}
+
+.botones button{
+background:#042358;
+color:white;
+border:none;
+padding:15px 25px;
+margin:10px;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
+transition:0.3s;
+}
+
+
+/* Animación de botones */
+
+.botones button:hover{
+background:#0a3d91;
+transform:scale(1.05);
+}
+
+
+/* ============================= */
+/* Sección de eventos */
+/* ============================= */
+
+.eventos{
+padding:70px 40px;
+background:white;
+}
+
+
+/* Título eventos */
+
+.eventos h2{
+text-align:center;
+color:#042358;
+margin-bottom:40px;
+}
+
+
+/* Contenedor de eventos */
+
+.contenedor-eventos{
+display:flex;
+justify-content:center;
+gap:35px;
+flex-wrap:wrap;
+}
+
+
+/* Tarjeta de evento */
+
+.evento-card{
+width:320px;
+background:white;
+border-radius:8px;
+overflow:hidden;
+box-shadow:0 8px 25px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+
+/* Animación tarjeta */
+
+.evento-card:hover{
+transform:translateY(-8px);
+box-shadow:0 12px 35px rgba(0,0,0,0.2);
+}
+
+
+/* Imagen del evento */
+
+.evento-img img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+
+/* Información del evento */
+
+.evento-info{
+display:flex;
+gap:20px;
+padding:20px;
+}
+
+
+/* Fecha del evento */
+
+.evento-fecha{
+text-align:center;
+min-width:60px;
+}
+
+.evento-fecha .dia{
+font-size:32px;
+font-weight:bold;
+color:#f39c12;
+display:block;
+}
+
+.evento-fecha .mes{
+font-size:14px;
+color:#999;
+}
+
+
+/* Texto del evento */
+
+.evento-texto h3{
+font-size:16px;
+color:#333;
+margin-bottom:10px;
+}
+
+.hora{
+font-size:14px;
+color:#555;
+margin-bottom:5px;
+}
+
+.lugar{
+font-size:13px;
+color:#777;
+}
+
+
+/* ============================= */
+/* Pie de página */
+/* ============================= */
+
+.footer{
+background:#0a0a0a;
+color:white;
+padding:40px 60px;
+}
+
+
+/* Contenedor footer */
+
+.footer-contenedor{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+flex-wrap:wrap;
+gap:40px;
+}
+
+
+/* Información footer */
+
+.footer-info{
+max-width:500px;
+}
+
+.footer-info h3{
+margin-bottom:15px;
+}
+
+.footer-info p{
+margin:5px 0;
+font-size:14px;
+color:#ccc;
+}
+
+
+/* Mapa */
+
+.footer-mapa iframe{
+border-radius:6px;
+}
+
+
+/* Copyright */
+
+.footer-copy{
+text-align:center;
+margin-top:30px;
+border-top:1px solid #333;
+padding-top:15px;
+font-size:13px;
+color:#aaa;
+}
