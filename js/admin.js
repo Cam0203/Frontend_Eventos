@@ -179,6 +179,9 @@
 
                 let estadoVisible = e.estado || "Sin estado";
 
+                console.log("EVENTO ORIGINAL:", e.nombre, " | fecha:", e.fecha, " | estado BD:", e.estado);
+                console.log("ESTADO VISIBLE:", e.nombre, "=>", estadoVisible);
+
                 listaProcesada.push({
                     id: e.id,
                     nombre: e.nombre,
