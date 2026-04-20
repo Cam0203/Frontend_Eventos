@@ -8,6 +8,8 @@
     const API_ASISTENCIA = `${BASE_URL}/asistencia`;
 
         let eventosAdmin = [];
+        let filtroEstadoActual = "todos";
+        let textoBusquedaActual = "";
     
     /* ========================= */
     /* INICIO */
@@ -124,19 +126,9 @@
         }*/
 
         function buscarEventoAdmin(texto) {
-
-            const contenedor = document.getElementById("listaEventos");
-
-            if (!eventosAdmin) return;
-
-            const filtrados = eventosAdmin.filter(e =>
-                (e.nombre || "")
-                    .toLowerCase()
-                    .includes(texto.toLowerCase().trim())
-            );
-
-    contenedor.data = filtrados;
-} 
+            textoBusquedaActual = (texto || "").toLowerCase().trim();
+            aplicarFiltrosAdmin();
+        }
     /* ========================= */
     /* MOSTRAR EVENTOS */
     /* ========================= */
@@ -217,15 +209,28 @@
 
     //FILTRARPORESTADO//
     function filtrarPorEstado(estado) {
+        filtroEstadoActual = estado || "todos";
+        aplicarFiltrosAdmin();
+    }
+
+    //APLICAR FILTRAR POR ESTADO EN BUSCADOR//
+    function aplicarFiltrosAdmin() {
         const contenedor = document.getElementById("listaEventos");
+        if (!Array.isArray(eventosAdmin) || !contenedor) return;
 
-        if (!Array.isArray(eventosAdmin)) return;
+        let filtrados = [...eventosAdmin];
 
-        let filtrados = eventosAdmin;
+        // filtrar por estado
+        if (filtroEstadoActual !== "todos") {
+            filtrados = filtrados.filter(e =>
+                (e.estado || "").toLowerCase() === filtroEstadoActual.toLowerCase()
+            );
+        }
 
-        if (estado !== "todos") {
-            filtrados = eventosAdmin.filter(e =>
-                (e.estado || "").toLowerCase() === estado.toLowerCase()
+        // filtrar por texto
+        if (textoBusquedaActual) {
+            filtrados = filtrados.filter(e =>
+                (e.nombre || "").toLowerCase().includes(textoBusquedaActual)
             );
         }
 
@@ -727,18 +732,21 @@ function cerrarSesion(){
 }
 
 function mostrarTodosEventos() {
+    const componente = document.getElementById("buscadorEventos");
+    const input = componente?.querySelector("input");
 
-    // 1. limpiar input del buscador
-    const buscador = document.querySelector("app-buscador input");
-
-    if (buscador) {
-        buscador.value = "";
+    if (input) {
+        input.value = "";
     }
 
-    // 2. resetear filtro local
-    if (Array.isArray(eventosAdmin)) {
-        document.getElementById("listaEventos").data = eventosAdmin;
+    const select = document.getElementById("filtroEstado");
+    if (select) {
+        select.value = "todos";
     }
-    cargarEventos();
+
+    textoBusquedaActual = "";
+    filtroEstadoActual = "todos";
+
+    aplicarFiltrosAdmin();
 }
 
