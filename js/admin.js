@@ -1,9 +1,11 @@
 
-    const API = "http://127.0.0.1:8000/eventos";
-    const API_INSCRIBE = "http://127.0.0.1:8000/inscribe";
-    const API_PONENTES = "http://127.0.0.1:8000/ponente";
-    const API_LUGARES = "http://127.0.0.1:8000/lugar/";
-    const API_ASISTENCIA = "http://localhost:8000/asistencia";
+    const BASE_URL = "https://backend-eventos-rth3.onrender.com";
+
+    const API = `${BASE_URL}/eventos`;
+    const API_INSCRIBE = `${BASE_URL}/inscribe`;
+    const API_PONENTES = `${BASE_URL}/ponente`;
+    const API_LUGARES = `${BASE_URL}/lugar/`;
+    const API_ASISTENCIA = `${BASE_URL}/asistencia`;
 
         let eventosAdmin = [];
     
@@ -673,7 +675,7 @@
     /* ========================= */
     async function enviarNotificacionCorreo() {
     try {
-        const res = await fetch("http://127.0.0.1:8000/usuarios/");
+        const res = await fetch(`${BASE_URL}/usuarios/`);
 
         if (!res.ok) {
         throw new Error("No se pudieron consultar los usuarios");
@@ -716,8 +718,6 @@ function mostrarTodosEventos() {
     if (Array.isArray(eventosAdmin)) {
         document.getElementById("listaEventos").data = eventosAdmin;
     }
-
-    // 3. recargar desde API (opcional pero seguro)
     cargarEventos();
 }
 
