@@ -74,6 +74,13 @@
             <button class="btn-secondary" onclick="mostrarTodosEventos()">Mostrar todos</button>
             </div>
 
+            <div class="filters-row">
+                <button class="btn-filter active" onclick="filtrarPorEstado('todos', this)">Todos</button>
+                <button class="btn-filter" onclick="filtrarPorEstado('Programado', this)">Programados</button>
+                <button class="btn-filter" onclick="filtrarPorEstado('Finalizado', this)">Finalizados</button>
+                <button class="btn-filter" onclick="filtrarPorEstado('Cancelado', this)">Cancelados</button>
+            </div>
+
         </section>
 
 

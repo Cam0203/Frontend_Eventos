@@ -408,5 +408,32 @@
     }
 }
 
+    .filters-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+    }
+
+    .btn-filter {
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    color: #111827;
+    padding: 8px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    }
+
+    .btn-filter:hover {
+    background: #e5e7eb;
+    }
+
+    .btn-filter.active {
+    background: #1d4ed8;
+    color: white;
+    border-color: #1d4ed8;
+    }
+
 
 

@@ -177,6 +177,12 @@
 
                 const estado = getEstadoEvento(e.fecha);
 
+                let estadoVisible = e.estado;
+
+                if ((e.estado || "").toLowerCase() !== "cancelado") {
+                    estadoVisible = estado.finalizado ? "Finalizado" : e.estado;
+                }
+
                 listaProcesada.push({
                     id: e.id,
                     nombre: e.nombre,
@@ -184,9 +190,8 @@
                     fecha: e.fecha,
                     hora: e.hora,
                     modalidad: e.modalidad,
-                    estado: estado.texto,
+                    estado: estadoVisible,
                     finalizado: estado.finalizado,
-                    estado: e.estado,
                     cupo_max: e.cupo_max,
                     inscritos: inscritos,
                     ponente: e.primer_nombre
@@ -208,6 +213,30 @@
                 "Ocurrió un problema al mostrar los eventos",
                 "error"
             );
+        }
+    }
+
+    //FILTRARPORESTADO//
+    function filtrarPorEstado(estado, boton) {
+        const contenedor = document.getElementById("listaEventos");
+
+        if (!Array.isArray(eventosAdmin)) return;
+
+        let filtrados = eventosAdmin;
+
+        if (estado !== "todos") {
+            filtrados = eventosAdmin.filter(e =>
+                (e.estado || "").toLowerCase() === estado.toLowerCase()
+            );
+        }
+
+        contenedor.data = filtrados;
+
+        const botones = document.querySelectorAll(".btn-filter");
+        botones.forEach(btn => btn.classList.remove("active"));
+
+        if (boton) {
+            boton.classList.add("active");
         }
     }
 

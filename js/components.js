@@ -43,8 +43,8 @@ class EventCard extends HTMLElement {
                 <p><strong>Inscritos:</strong> ${data.inscritos} / ${data.cupo_max ?? 0}</p>
                 <p>
                     <strong>Estado:</strong>
-                    <span class="${getEstadoEvento(data.fecha).finalizado ? 'finalizado' : ''}">
-                        ${getEstadoEvento(data.fecha).texto}
+                    <span class="${(data.estado || '').toLowerCase() === 'finalizado' ? 'finalizado' : ''}">
+                        ${data.estado || "Sin estado"}
                     </span>
                 </p>
                 <p><strong>Lugar:</strong> ${data.lugar}</p>
@@ -441,7 +441,6 @@ class AppListaEventos extends HTMLElement {
 customElements.define("app-lista-eventos", AppListaEventos);
 
 /* SECTION HEADER*/ 
-// SECTION HEADER
 class AppSectionHeader extends HTMLElement {
     connectedCallback() {
         const titulo = this.getAttribute("titulo") || "";
