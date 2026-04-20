@@ -1,3 +1,4 @@
+const BASE_URL = "https://backend-eventos-rth3.onrender.com";
 let eventosGlobal = [];
 /* ================================= */
 /* OBTENER USUARIO DEL LOCALSTORAGE  */
@@ -39,9 +40,7 @@ async function obtenerInscripciones(){
 
 try{
 
-const respuesta = await fetch(
-`http://127.0.0.1:8000/inscribe/usuario/${usuario.id_usuario}`
-);
+const respuesta = await fetch(`${BASE_URL}/inscribe/usuario/${usuario.id_usuario}`);
 
 if(!respuesta.ok) return [];
 
@@ -65,8 +64,7 @@ return [];
 
 async function cargarEventos() {
     try {
-        const respuestaEventos = await fetch("http://127.0.0.1:8000/eventos/");
-
+        const respuestaEventos = await fetch(`${BASE_URL}/eventos/`);
         if(!respuestaEventos.ok){
             console.log("Error al traer eventos");
             return;
@@ -75,7 +73,7 @@ async function cargarEventos() {
         const eventos = await respuestaEventos.json();
         console.log("EVENTOS:", eventos);
 
-        const resLugares = await fetch("http://127.0.0.1:8000/lugar/");
+        const resLugares = await fetch(`${BASE_URL}/lugar/`);
         const listaLugares = await resLugares.json();
 
         const inscripciones = await obtenerInscripciones();
@@ -154,7 +152,7 @@ async function inscribirse(id_evento){
 
 try{
 
-const respuesta = await fetch("http://127.0.0.1:8000/inscribe/",{
+const respuesta = await fetch(`${BASE_URL}/inscribe/`, {
 
 method:"POST",
 
@@ -207,8 +205,7 @@ async function cancelarInscripcion(id_evento){
 
 try{
 
-const respuesta = await fetch(
-`http://127.0.0.1:8000/inscribe/${usuario.id_usuario}/${id_evento}`,
+const respuesta = await fetch(`${BASE_URL}/inscribe/${usuario.id_usuario}/${id_evento}`,
 {
 method:"DELETE"
 }
