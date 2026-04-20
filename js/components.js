@@ -440,6 +440,25 @@ class AppListaEventos extends HTMLElement {
 
 customElements.define("app-lista-eventos", AppListaEventos);
 
+/* SECTION HEADER*/ 
+// SECTION HEADER
+class AppSectionHeader extends HTMLElement {
+    connectedCallback() {
+        const titulo = this.getAttribute("titulo") || "";
+        const subtitulo = this.getAttribute("subtitulo") || "";
+        const centered = this.getAttribute("center") === "true" ? "center" : "";
+
+        this.innerHTML = `
+            <div class="section-header ${centered}">
+                <h3>${titulo}</h3>
+                <p>${subtitulo}</p>
+            </div>
+        `;
+    }
+}
+
+customElements.define("app-section-header", AppSectionHeader);
+
 /* ESTADO EVENTO*/
 
 function getEstadoEvento(fechaEvento) {

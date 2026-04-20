@@ -81,10 +81,11 @@
         </section>
 
         <section class="events-section" id="events-section">
-            <div class="section-header center">
-            <h3>Eventos disponibles</h3>
-            <p>Consulta los detalles e inscríbete en los eventos activos.</p>
-            </div>
+            <app-section-header
+                titulo="Eventos disponibles"
+                subtitulo="Consulta los detalles e inscríbete en los eventos activos."
+                center="true">
+            </app-section-header>
 
             <app-lista-eventos modo="estudiante" id="listaEventos"></app-lista-eventos>
         </section>
