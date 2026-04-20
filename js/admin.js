@@ -177,11 +177,7 @@
 
                 const estado = getEstadoEvento(e.fecha);
 
-                let estadoVisible = e.estado;
-
-                if ((e.estado || "").toLowerCase() !== "cancelado") {
-                    estadoVisible = estado.finalizado ? "Finalizado" : e.estado;
-                }
+                let estadoVisible = e.estado || "Sin estado";
 
                 listaProcesada.push({
                     id: e.id,
