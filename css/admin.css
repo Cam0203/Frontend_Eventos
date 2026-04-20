@@ -410,29 +410,25 @@
 
     .filters-row {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 16px;
+    align-items: center;
+    gap: 12px;
+    margin: 16px 0 24px;
     }
 
-    .btn-filter {
-    background: #f3f4f6;
+    .filter-label {
+    font-weight: 600;
+    color: #374151;
+    }
+
+    .filter-select {
+    padding: 10px 14px;
     border: 1px solid #d1d5db;
+    border-radius: 10px;
+    background: white;
     color: #111827;
-    padding: 8px 14px;
-    border-radius: 999px;
+    font-size: 14px;
+    min-width: 180px;
     cursor: pointer;
-    transition: 0.3s ease;
-    }
-
-    .btn-filter:hover {
-    background: #e5e7eb;
-    }
-
-    .btn-filter.active {
-    background: #1d4ed8;
-    color: white;
-    border-color: #1d4ed8;
     }
 
 

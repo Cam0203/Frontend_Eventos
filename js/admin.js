@@ -213,7 +213,7 @@
     }
 
     //FILTRARPORESTADO//
-    function filtrarPorEstado(estado, boton) {
+    function filtrarPorEstado(estado) {
         const contenedor = document.getElementById("listaEventos");
 
         if (!Array.isArray(eventosAdmin)) return;
@@ -227,13 +227,6 @@
         }
 
         contenedor.data = filtrados;
-
-        const botones = document.querySelectorAll(".btn-filter");
-        botones.forEach(btn => btn.classList.remove("active"));
-
-        if (boton) {
-            boton.classList.add("active");
-        }
     }
 
     /* ========================= */

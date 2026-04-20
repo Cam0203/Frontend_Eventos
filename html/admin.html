@@ -87,12 +87,15 @@
 
             
             <div class="filters-row">
-                <button class="btn-filter active" onclick="filtrarPorEstado('todos', this)">Todos</button>
-                <button class="btn-filter" onclick="filtrarPorEstado('Programado', this)">Programados</button>
-                <button class="btn-filter" onclick="filtrarPorEstado('Finalizado', this)">Finalizados</button>
-                <button class="btn-filter" onclick="filtrarPorEstado('Cancelado', this)">Cancelados</button>
-            </div>
-            
+                <label for="filtroEstado" class="filter-label">Filtrar por estado:</label>
+                <select id="filtroEstado" class="filter-select" onchange="filtrarPorEstado(this.value)">
+                    <option value="todos">Todos</option>
+                    <option value="Programado">Programados</option>
+                    <option value="Finalizado">Finalizados</option>
+                    <option value="Cancelado">Cancelados</option>
+                </select>
+                </div>
+
             <app-lista-eventos id="listaEventos"></app-lista-eventos>
         </section>
         </main>
