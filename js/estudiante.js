@@ -99,6 +99,22 @@ async function cargarEventos() {
 
             const nombreDelLugar = datosLugar ? datosLugar.nombre : "No asignado";
 
+            let estadoVisible = evento.estado || "Sin estado";
+            const hoy = new Date().toISOString().split("T")[0];
+
+            // no mostrar cancelados
+            if ((estadoVisible || "").toLowerCase() === "cancelado") {
+                return;
+            }
+
+            // no mostrar eventos con fecha pasada
+            if (evento.fecha < hoy) {
+                return;
+            }
+
+            // si sigue visible, mostrarlo como programado o el estado que traiga
+            estadoVisible = evento.estado || "Programado";
+
             listaProcesada.push({
                 id: idEvento,
                 nombre: evento.nombre,
@@ -106,12 +122,13 @@ async function cargarEventos() {
                 fecha: evento.fecha,
                 hora: evento.hora_inicio || evento.hora,
                 modalidad: evento.modalidad,
+                estado: estadoVisible,
                 cupo_max: evento.cupo_max,
                 inscritos: evento.inscritos || 0,
-                ponente: evento.ponente || "No asignado",
+                ponente: evento.primer_nombre
+                    ? `${evento.primer_nombre} ${evento.primer_apellido ?? ""}`.trim()
+                    : (evento.ponente || "No asignado"),
                 lugar: nombreDelLugar,
-
-                // 🔥 CLAVE PARA EL BOTÓN
                 inscrito: inscrito,
                 lleno: lleno
             });

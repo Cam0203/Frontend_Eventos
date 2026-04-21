@@ -59,12 +59,25 @@ class EventCard extends HTMLElement {
                         : `
                             <button 
                                 class="${data.inscrito ? 'btn-inscrito' : 'btn-inscribir'}"
-                                onclick="${data.inscrito ? `cancelarInscripcion(${data.id})` : `inscribirse(${data.id})`}"
-                                ${data.lleno && !data.inscrito ? "disabled" : ""}
+                                onclick="${
+                                    data.estado === 'Finalizado'
+                                        ? ''
+                                        : data.inscrito
+                                            ? `cancelarInscripcion(${data.id})`
+                                            : `inscribirse(${data.id})`
+                                }"
+                                ${(
+                                    (data.lleno && !data.inscrito) ||
+                                    data.estado === 'Finalizado'
+                                ) ? "disabled" : ""}
                             >
-                                ${data.lleno && !data.inscrito 
-                                    ? "Evento lleno" 
-                                    : (data.inscrito ? "Inscrito" : "Inscribirme")}
+                                ${
+                                    data.estado === "Finalizado"
+                                        ? "Evento finalizado"
+                                        : data.lleno && !data.inscrito
+                                            ? "Evento lleno"
+                                            : (data.inscrito ? "Cancelar inscripción" : "Inscribirme")
+                                }
                             </button>
                         `
                     }
