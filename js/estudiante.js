@@ -80,7 +80,7 @@ async function cargarEventos() {
         console.log("INSCRIPCIONES:", inscripciones);
 
         const eventosInscritos = inscripciones.map(i => i.id_evento);
-        actualizarIndicadores(eventos, eventosInscritos);
+        actualizarIndicadores(listaProcesada, eventosInscritos);
 
         const contenedor = document.getElementById("listaEventos");
 
@@ -136,6 +136,7 @@ async function cargarEventos() {
 
         eventosGlobal = listaProcesada;
         contenedor.data = listaProcesada;
+        actualizarIndicadores(listaProcesada, eventosInscritos);
 
     } catch (error) {
         console.log("Error cargando eventos:", error);
@@ -253,32 +254,22 @@ console.log("Error cancelando inscripción:", error);
 }
 
 
-/* ================================= */
-/* EJECUTAR AL CARGAR LA PAGINA      */
-/* ================================= */
-
 cargarEventos();
 
 /* ================================= */
 /* ACTUALIZAR INDICADORES            */
 /* ================================= */
 
-function actualizarIndicadores(eventos, eventosInscritos){
+function actualizarIndicadores(eventos, eventosInscritos) {
+    const total = eventos.length;
+    const mis = eventos.filter(e => eventosInscritos.includes(e.id)).length;
 
-const total = eventos.length;
+    const hoy = new Date().toISOString().split("T")[0];
+    const proximos = eventos.filter(e => e.fecha >= hoy).length;
 
-const mis = eventosInscritos.length;
-
-const hoy = new Date().toISOString().split("T")[0];
-
-const proximos = eventos.filter(e => e.fecha >= hoy).length;
-
-document.getElementById("totalEventos").innerText = total;
-
-document.getElementById("misInscripciones").innerText = mis;
-
-document.getElementById("proximosEventos").innerText = proximos;
-
+    document.getElementById("totalEventos").innerText = total;
+    document.getElementById("misInscripciones").innerText = mis;
+    document.getElementById("proximosEventos").innerText = proximos;
 }
 function mostrarTodosEventos() {
 

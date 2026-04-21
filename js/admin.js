@@ -73,7 +73,7 @@
 
         const eventos = await res.json();
         await mostrarEventos(eventos);
-        actualizarIndicadores(eventos);
+        
     } catch (error) {
         console.error("Error cargando eventos:", error);
         mostrarAlerta(error.message || "Error inesperado", "error");
@@ -194,6 +194,7 @@
 
             eventosAdmin = listaProcesada;
             contenedor.data = listaProcesada;
+            actualizarIndicadores(listaProcesada);
 
         } catch (error) {
             console.error("Error general en mostrarEventos:", error);
