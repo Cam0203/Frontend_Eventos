@@ -65,7 +65,7 @@ return [];
 async function cargarEventos() {
     try {
         const respuestaEventos = await fetch(`${BASE_URL}/eventos/`);
-        if(!respuestaEventos.ok){
+        if (!respuestaEventos.ok) {
             console.log("Error al traer eventos");
             return;
         }
@@ -80,14 +80,11 @@ async function cargarEventos() {
         console.log("INSCRIPCIONES:", inscripciones);
 
         const eventosInscritos = inscripciones.map(i => i.id_evento);
-        actualizarIndicadores(listaProcesada, eventosInscritos);
 
         const contenedor = document.getElementById("listaEventos");
-
         const listaProcesada = [];
 
         eventos.forEach(evento => {
-
             const idEvento = evento.id || evento.id_evento;
 
             const inscrito = eventosInscritos.includes(idEvento);
@@ -100,19 +97,23 @@ async function cargarEventos() {
             const nombreDelLugar = datosLugar ? datosLugar.nombre : "No asignado";
 
             let estadoVisible = evento.estado || "Sin estado";
-            const hoy = new Date().toISOString().split("T")[0];
 
             // no mostrar cancelados
             if ((estadoVisible || "").toLowerCase() === "cancelado") {
                 return;
             }
 
+            const hoy = new Date();
+            hoy.setHours(0, 0, 0, 0);
+
+            const fechaEvento = new Date(evento.fecha);
+            fechaEvento.setHours(0, 0, 0, 0);
+
             // no mostrar eventos con fecha pasada
-            if (evento.fecha < hoy) {
+            if (fechaEvento < hoy) {
                 return;
             }
 
-            // si sigue visible, mostrarlo como programado o el estado que traiga
             estadoVisible = evento.estado || "Programado";
 
             listaProcesada.push({

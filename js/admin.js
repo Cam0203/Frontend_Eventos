@@ -73,7 +73,7 @@
 
         const eventos = await res.json();
         await mostrarEventos(eventos);
-        
+
     } catch (error) {
         console.error("Error cargando eventos:", error);
         mostrarAlerta(error.message || "Error inesperado", "error");
@@ -236,7 +236,8 @@
         }
 
         contenedor.data = filtrados;
-    }
+        actualizarIndicadores(filtrados);
+}
 
     /* ========================= */
     /* ACTUALIZAR INDICADORES */
