@@ -291,3 +291,13 @@ function mostrarTodosEventos() {
     }
 }
 
+function mostrarAlerta(mensaje, tipo = "exito") {
+    const contenedor = document.getElementById("alerta-container");
+    if (!contenedor) return;
+
+    const alerta = document.createElement("app-alerta");
+    alerta.setAttribute("mensaje", mensaje);
+    alerta.setAttribute("tipo", tipo);
+
+    contenedor.appendChild(alerta);
+}

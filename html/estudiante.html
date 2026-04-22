@@ -9,6 +9,8 @@
     </head>
     <body>
 
+    <div id="alerta-container"></div>
+    
     <div class="student-layout">
 
         <!-- Sidebar -->
@@ -16,16 +18,10 @@
 
         <!-- Main -->
         <main class="main-content">
-        <header class="topbar">
-            <div>
-            <h1>Panel del Estudiante</h1>
-            <p>Consulta e inscríbete en los eventos académicos e institucionales</p>
-            </div>
-
-            <div class="student-badge">
-            <span id="bienvenida">Bienvenido</span>
-            </div>
-        </header>
+        <app-topbar
+            titulo="Panel del Estudiante"
+            subtitulo="Consulta e inscríbete en los eventos académicos e institucionales">
+        </app-topbar>
 
         <section class="hero-card">
             <div class="hero-overlay">
@@ -41,29 +37,23 @@
         </section>
 
         <section class="stats-grid">
-            <article class="stat-card">
-            <div class="stat-icon blue">📚</div>
-            <div>
-                <h3 id="totalEventos">0</h3>
-                <p>Eventos disponibles</p>
-            </div>
-            </article>
+            <app-stats-card 
+                tipo="total" 
+                titulo="Eventos disponibles" 
+                icono="📚">
+            </app-stats-card>
 
-            <article class="stat-card">
-            <div class="stat-icon orange">📝</div>
-            <div>
-                <h3 id="misInscripciones">0</h3>
-                <p>Mis inscripciones</p>
-            </div>
-            </article>
+            <app-stats-card 
+                tipo="mis" 
+                titulo="Mis inscripciones" 
+                icono="📝">
+            </app-stats-card>
 
-            <article class="stat-card">
-            <div class="stat-icon light">⏰</div>
-            <div>
-                <h3 id="proximosEventos">0</h3>
-                <p>Próximos eventos</p>
-            </div>
-            </article>
+            <app-stats-card 
+                tipo="proximos" 
+                titulo="Próximos eventos" 
+                icono="⏰">
+            </app-stats-card>
         </section>
 
         <section class="tools-card">
