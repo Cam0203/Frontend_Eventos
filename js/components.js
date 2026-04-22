@@ -285,7 +285,6 @@ class AppStatsCard extends HTMLElement {
         if (tipo === "total") id = "totalEventos";
         if (tipo === "activos") id = "eventosActivos";
         if (tipo === "proximos") id = "proximosEventos";
-        if (tipo === "mis") id = "misInscripciones";
 
         this.innerHTML = `
             <article class="stat-card">
@@ -366,14 +365,11 @@ customElements.define("app-sidebar", AppSidebar);
 //TOPBARD//
 class AppTopbar extends HTMLElement {
     connectedCallback() {
-        const titulo = this.getAttribute("titulo") || "Panel";
-        const subtitulo = this.getAttribute("subtitulo") || "";
-
         this.innerHTML = `
             <header class="topbar">
                 <div>
-                    <h1>${titulo}</h1>
-                    <p>${subtitulo}</p>
+                    <h1>Panel Administrador</h1>
+                    <p>Administra eventos institucionales de forma ágil y profesional</p>
                 </div>
 
                 <div class="topbar-user">
