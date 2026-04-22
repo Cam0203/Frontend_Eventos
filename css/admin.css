@@ -227,31 +227,6 @@
     }
     }
 
-    #alerta-container{
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 9999;
-    }
-
-    .alerta{
-    padding: 14px 20px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    color: white;
-    font-weight: bold;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    animation: fadeIn 0.3s ease;
-    }
-
-    .alerta.exito{
-    background: #22c55e;
-    }
-
-    .alerta.error{
-    background: #ef4444;
-    }
-
     @keyframes fadeIn{
     from{opacity:0; transform:translateY(-10px);}
     to{opacity:1; transform:translateY(0);}

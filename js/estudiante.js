@@ -194,13 +194,13 @@ const boton = document.getElementById("btn-" + id_evento);
 
 if(!respuesta.ok){
 
-alert(data.detail);
-
-return;
-
+if (!respuesta.ok) {
+    mostrarAlerta(data.detail || "No se pudo realizar la inscripción", "error");
+    return;
 }
 
-alert("Inscripción realizada correctamente");
+mostrarAlerta("Inscripción realizada correctamente", "exito");
+}
 
 boton.innerText = "Cancelar inscripción";
 boton.onclick = function(){
@@ -232,14 +232,12 @@ method:"DELETE"
 
 const boton = document.getElementById("btn-" + id_evento);
 
-if(!respuesta.ok){
-
-alert("Error al cancelar inscripción");
-return;
-
+if (!respuesta.ok) {
+    mostrarAlerta("Error al cancelar inscripción", "error");
+    return;
 }
 
-alert("Inscripción cancelada");
+mostrarAlerta("Inscripción cancelada", "exito");
 
 boton.innerText = "Inscribirme";
 boton.onclick = function(){
