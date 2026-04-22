@@ -167,52 +167,48 @@ function filtrarEventos(texto){
 /* INSCRIBIRSE A EVENTO              */
 /* ================================= */
 
-async function inscribirse(id_evento){
+async function inscribirse(id_evento) {
+    try {
+        const respuesta = await fetch(`${BASE_URL}/inscribe/`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id_usuario: Number(usuario.id_usuario),
+                id_evento: Number(id_evento),
+                fecha: new Date().toISOString().split("T")[0],
+                estado: "Inscrito"
+            })
+        });
 
-try{
+        let data = {};
+        try {
+            data = await respuesta.json();
+        } catch (e) {
+            data = {};
+        }
 
-const respuesta = await fetch(`${BASE_URL}/inscribe/`, {
+        const boton = document.getElementById("btn-" + id_evento);
 
-method:"POST",
+        if (!respuesta.ok) {
+            mostrarAlerta(data.detail || "No se pudo realizar la inscripción", "error");
+            return;
+        }
 
-headers:{
-"Content-Type":"application/json"
-},
+        mostrarAlerta("Inscripción realizada correctamente", "exito");
 
-body: JSON.stringify({
-id_usuario: Number(usuario.id_usuario),
-id_evento: Number(id_evento),
-fecha: new Date().toISOString().split("T")[0],
-estado: "Inscrito"
-})
+        if (boton) {
+            boton.innerText = "Cancelar inscripción";
+            boton.onclick = function () {
+                cancelarInscripcion(id_evento);
+            };
+        }
 
-});
-
-const data = await respuesta.json();
-
-const boton = document.getElementById("btn-" + id_evento);
-
-if(!respuesta.ok){
-
-if (!respuesta.ok) {
-    mostrarAlerta(data.detail || "No se pudo realizar la inscripción", "error");
-    return;
-}
-
-mostrarAlerta("Inscripción realizada correctamente", "exito");
-}
-
-boton.innerText = "Cancelar inscripción";
-boton.onclick = function(){
-cancelarInscripcion(id_evento);
-};
-
-}catch(error){
-
-console.log("Error al inscribirse:", error);
-
-}
-
+    } catch (error) {
+        console.log("Error al inscribirse:", error);
+        mostrarAlerta("Error al conectar con el servidor", "error");
+    }
 }
 
 
