@@ -194,13 +194,13 @@ const boton = document.getElementById("btn-" + id_evento);
 
 if(!respuesta.ok){
 
-alert(data.detail);
+mostrarAlerta(data.detail || "No se pudo realizar la inscripción", "error");
 
 return;
 
 }
 
-alert("Inscripción realizada correctamente");
+mostrarAlerta("Inscripción realizada correctamente", "exito");
 
 boton.innerText = "Cancelar inscripción";
 boton.onclick = function(){
@@ -234,12 +234,12 @@ const boton = document.getElementById("btn-" + id_evento);
 
 if(!respuesta.ok){
 
-alert("Error al cancelar inscripción");
+mostrarAlerta("Error al cancelar inscripción", "error");
 return;
 
 }
 
-alert("Inscripción cancelada");
+mostrarAlerta("Inscripción cancelada", "exito");
 
 boton.innerText = "Inscribirme";
 boton.onclick = function(){
@@ -289,5 +289,16 @@ function mostrarTodosEventos() {
     if (Array.isArray(eventosGlobal) && eventosGlobal.length > 0) {
         contenedor.data = eventosGlobal;
     }
+}
+
+function mostrarAlerta(mensaje, tipo = "exito") {
+    const contenedor = document.getElementById("alerta-container");
+    if (!contenedor) return;
+
+    const alerta = document.createElement("app-alerta");
+    alerta.setAttribute("mensaje", mensaje);
+    alerta.setAttribute("tipo", tipo);
+
+    contenedor.appendChild(alerta);
 }
 
