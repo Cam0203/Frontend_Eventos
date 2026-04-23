@@ -1,4 +1,6 @@
 const BASE_URL = "https://backend-eventos-rth3.onrender.com";
+const API_INSCRIBE = `${BASE_URL}/inscribe`;
+const API_ASISTENCIA = `${BASE_URL}/asistencia`;
 let eventosGlobal = [];
 
 /* ================================= */
@@ -174,6 +176,157 @@ function mostrarAlerta(mensaje, tipo = "exito") {
     alerta.setAttribute("tipo", tipo);
 
     contenedor.appendChild(alerta);
+}
+
+async function verInscritos(id_evento, nombreEvento, fechaEvento) {
+    try {
+        const res = await fetch(`${API_INSCRIBE}/evento/${id_evento}`);
+        if (!res.ok) throw new Error("No se pudieron cargar los inscritos");
+
+        const inscritos = await res.json();
+
+        const resAsistencia = await fetch(`${API_ASISTENCIA}/evento/${id_evento}`);
+        const asistenciaData = resAsistencia.ok ? await resAsistencia.json() : [];
+
+        const asistenciaMap = {};
+        asistenciaData.forEach(a => {
+            asistenciaMap[a.id_inscripcion] = a.estado;
+        });
+
+        let html = `
+            <div class="form-card">
+                <h3 class="form-title">Estudiantes inscritos</h3>
+        `;
+
+        if (!inscritos.length) {
+            html += `<p>No hay inscritos en este evento.</p>`;
+        } else {
+            html += `
+                <div style="margin-bottom:10px;">
+                    <select id="filtroAsistencia">
+                        <option value="">Todos</option>
+                        <option value="asistio">Asistieron</option>
+                        <option value="no">No asistieron</option>
+                    </select>
+                </div>
+
+                <table class="table-modern" id="tablaInscritos">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Fecha inscripción</th>
+                            <th>Asistencia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            inscritos.forEach((i) => {
+                html += `
+                    <tr>
+                        <td>${i.primer_nombre} ${i.primer_apellido}</td>
+                        <td>${i.correo_institucional}</td>
+                        <td>${i.fecha}</td>
+                        <td>
+                            <input type="checkbox"
+                                class="check-asistencia"
+                                data-id="${i.id_inscripcion}"
+                                ${asistenciaMap[i.id_inscripcion] === "Asistio" ? "checked" : ""}
+                                disabled>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            html += `
+                    </tbody>
+                </table>
+            `;
+        }
+
+        html += `
+                <div class="form-actions">
+                    <button class="btn-cancel" onclick="cerrarModal()">Cerrar</button>
+                </div>
+            </div>
+        `;
+
+        abrirModal(html);
+
+        setTimeout(() => {
+            if (!$("#tablaInscritos").length) return;
+
+            const nombreLimpio = (nombreEvento || "Evento")
+                .replace(/\s+/g, "_")
+                .replace(/[^\w\-]/g, "");
+
+            const tabla = $("#tablaInscritos").DataTable({
+                pageLength: 5,
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        text: '📥 Exportar a Excel',
+                        title: `Inscritos_${nombreLimpio}`,
+                        exportOptions: {
+                            columns: [0, 1, 2, 3],
+                            format: {
+                                body: function (data, row, column, node) {
+                                    if (column === 3) {
+                                        return $(node).find("input").is(":checked")
+                                            ? "Asistió"
+                                            : "No asistió";
+                                    }
+                                    return data;
+                                }
+                            }
+                        }
+                    }
+                ],
+                language: {
+                    search: "Buscar:",
+                    lengthMenu: "Mostrar _MENU_ registros",
+                    info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                    paginate: {
+                        next: "Siguiente",
+                        previous: "Anterior"
+                    }
+                }
+            });
+
+            $("#filtroAsistencia").off("change").on("change", function () {
+                const valor = this.value;
+
+                tabla.rows().every(function () {
+                    const checkbox = $(this.node()).find(".check-asistencia");
+                    const checked = checkbox.is(":checked");
+
+                    if (valor === "asistio" && !checked) {
+                        $(this.node()).hide();
+                    } else if (valor === "no" && checked) {
+                        $(this.node()).hide();
+                    } else {
+                        $(this.node()).show();
+                    }
+                });
+            });
+        }, 200);
+
+    } catch (error) {
+        console.log("Error cargando inscritos:", error);
+        mostrarAlerta(error.message || "Error inesperado", "error");
+    }
+}
+
+function abrirModal(contenido) {
+    const modal = document.getElementById("modal");
+    if (modal) modal.abrir(contenido);
+}
+
+function cerrarModal() {
+    const modal = document.getElementById("modal");
+    if (modal) modal.cerrar();
 }
 
 /* ================================= */
