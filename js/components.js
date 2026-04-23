@@ -365,7 +365,7 @@ class AppSidebar extends HTMLElement {
                 const usuario = JSON.parse(localStorage.getItem("usuario")) || {};
                 const rol = Number(usuario.id_rol);
 
-                // Admin abre modal
+                // Solo admin abre modal
                 if (rol === 3) {
                     e.preventDefault();
 
@@ -392,15 +392,6 @@ class AppSidebar extends HTMLElement {
                                 </div>
                             </div>
                         `);
-                    }
-                } 
-                
-                // Estudiante y coordinador bajan a estadísticas
-                else {
-                    e.preventDefault();
-                    const statsSection = document.getElementById("stats-section");
-                    if (statsSection) {
-                        statsSection.scrollIntoView({ behavior: "smooth" });
                     }
                 }
             });
