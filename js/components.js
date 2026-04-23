@@ -363,7 +363,7 @@ class AppSidebar extends HTMLElement {
         if (dashboard) {
             dashboard.addEventListener("click", (e) => {
                 const usuario = JSON.parse(localStorage.getItem("usuario")) || {};
-                const rol = Number(usuario.id_rol);
+                const rol = Number(usuario.rol || usuario.id_rol);
 
                 // Solo admin abre modal
                 if (rol === 3) {
