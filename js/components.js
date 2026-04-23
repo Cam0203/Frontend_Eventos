@@ -319,7 +319,7 @@ class AppSidebar extends HTMLElement {
                 </div>
 
                 <nav class="sidebar-menu">
-                    <a href="#" class="menu-item active" id="btnDashboard">
+                    <a href="#stats-section" class="menu-item active" id="btnDashboard">
                         <span>📊</span>
                         <span>Dashboard</span>
                     </a>
@@ -353,7 +353,8 @@ class AppSidebar extends HTMLElement {
         }
 
         if (cerrar) {
-            cerrar.addEventListener("click", () => {
+            cerrar.addEventListener("click", (e) => {
+                e.preventDefault();
                 if (typeof cerrarSesion === "function") {
                     cerrarSesion();
                 }
@@ -362,38 +363,46 @@ class AppSidebar extends HTMLElement {
 
         if (dashboard) {
             dashboard.addEventListener("click", (e) => {
-                e.preventDefault();
+                const usuario = JSON.parse(localStorage.getItem("usuario")) || {};
+                const rol = Number(usuario.rol || usuario.id_rol);
 
-                // Solo abrir modal si existe en la página (admin)
-                const modal = document.getElementById("modal");
-                if (modal && typeof modal.abrir === "function") {
-                    modal.abrir(`
-                        <div class="form-card">
-                            <h3 class="form-title">Dashboard Power BI</h3>
-                            <div style="margin-top: 16px;">
-                                <p style="margin-bottom: 12px; color: #475569;">
-                                    Aquí se visualizará el dashboard de Power BI.
-                                </p>
-                                <iframe
-                                    src=""
-                                    width="100%"
-                                    height="500"
-                                    frameborder="0"
-                                    allowFullScreen="true"
-                                    style="border-radius: 12px; background: #f8fafc;">
-                                </iframe>
+                // ADMIN = abre modal
+                if (rol === 3) {
+                    e.preventDefault();
+
+                    const modal = document.getElementById("modal");
+                    if (modal && typeof modal.abrir === "function") {
+                        modal.abrir(`
+                            <div class="form-card">
+                                <h3 class="form-title">Dashboard Power BI</h3>
+                                <div style="margin-top: 16px;">
+                                    <p style="margin-bottom: 12px; color: #475569;">
+                                        Aquí se visualizará el dashboard de Power BI.
+                                    </p>
+                                    <iframe
+                                        src=""
+                                        width="100%"
+                                        height="500"
+                                        frameborder="0"
+                                        allowFullScreen="true"
+                                        style="border-radius: 12px; background: #f8fafc;">
+                                    </iframe>
+                                </div>
+                                <div class="form-actions">
+                                    <button class="btn-cancel" onclick="cerrarModal()">Cerrar</button>
+                                </div>
                             </div>
-                            <div class="form-actions">
-                                <button class="btn-cancel" onclick="cerrarModal()">Cerrar</button>
-                            </div>
-                        </div>
-                    `);
+                        `);
+                    }
                 }
+
+                // ESTUDIANTE y COORDINADOR:
+                // NO hacemos preventDefault para que el href="#stats-section"
+                // los lleve a las estadísticas
             });
         }
     }
 }
-
 
 customElements.define("app-sidebar", AppSidebar);
 
