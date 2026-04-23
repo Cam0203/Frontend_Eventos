@@ -32,14 +32,16 @@
 
         if (data.id_rol == 3) {
             window.location.href = "admin.html";
-        } else {
+        } else if (data.id_rol == 1) {
             window.location.href = "estudiante.html";
-        }
+        } else if (data.id_rol == 5) {
+            window.location.href = "coordinador.html";
 
         } else {
         document.getElementById("error").textContent =
     data.mensaje || "Usuario o contraseña incorrectos";
         }
+    }
 
     } catch (error) {
         console.error("Error en login:", error);

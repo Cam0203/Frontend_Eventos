@@ -56,28 +56,22 @@ class EventCard extends HTMLElement {
                             <button class="btn-edit" onclick="editarEvento(${data.id})">Editar</button>
                             <button class="btn-secondary" onclick="verInscritos(${data.id}, '${data.nombre}', '${data.fecha}')">Ver inscritos</button>
                         `
+                        : modo === "coordinador"
+                        ? `
+                            <button class="btn-secondary" onclick="verInscritos(${data.id}, '${data.nombre}', '${data.fecha}')">
+                                Ver inscritos
+                            </button>
+                        `
                         : `
                             <button 
+                                id="btn-${data.id}"
                                 class="${data.inscrito ? 'btn-inscrito' : 'btn-inscribir'}"
-                                onclick="${
-                                    data.estado === 'Finalizado'
-                                        ? ''
-                                        : data.inscrito
-                                            ? `cancelarInscripcion(${data.id})`
-                                            : `inscribirse(${data.id})`
-                                }"
-                                ${(
-                                    (data.lleno && !data.inscrito) ||
-                                    data.estado === 'Finalizado'
-                                ) ? "disabled" : ""}
+                                onclick="${data.inscrito ? `cancelarInscripcion(${data.id})` : `inscribirse(${data.id})`}"
+                                ${data.lleno && !data.inscrito ? "disabled" : ""}
                             >
-                                ${
-                                    data.estado === "Finalizado"
-                                        ? "Evento finalizado"
-                                        : data.lleno && !data.inscrito
-                                            ? "Evento lleno"
-                                            : (data.inscrito ? "Cancelar inscripción" : "Inscribirme")
-                                }
+                                ${data.lleno && !data.inscrito 
+                                    ? "Evento lleno" 
+                                    : (data.inscrito ? "Cancelar inscripción" : "Inscribirme")}
                             </button>
                         `
                     }

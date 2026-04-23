@@ -1,0 +1,87 @@
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Coordinador - CUL</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/estudiante.css">
+    </head>
+    <body>
+
+    <div id="alerta-container"></div>
+    
+    <div class="student-layout">
+
+        <!-- Sidebar -->
+        <app-sidebar></app-sidebar>
+
+        <!-- Main -->
+        <main class="main-content">
+        <app-topbar
+            titulo="Panel del Coordinador"
+            subtitulo="Supervisa eventos y consulta la participación de estudiantes">
+        </app-topbar>
+
+        <section class="hero-card">
+            <div class="hero-overlay">
+                <div class="hero-text">
+                    <h2>Supervisa la actividad académica CUL</h2>
+                    <p>
+                        Consulta los eventos programados y revisa la participación
+                        de los estudiantes en cada actividad institucional.
+                    </p>
+                    <a href="#events-section" class="btn-hero">Ver eventos</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-grid">
+            <app-stats-card 
+                tipo="total" 
+                titulo="Eventos visibles" 
+                icono="📚">
+            </app-stats-card>
+
+            <app-stats-card 
+                tipo="activos" 
+                titulo="Eventos activos" 
+                icono="📋">
+            </app-stats-card>
+
+            <app-stats-card 
+                tipo="proximos" 
+                titulo="Próximos eventos" 
+                icono="⏰">
+            </app-stats-card>
+        </section>
+
+        <section class="tools-card">
+            <div class="tools-header">
+            <div>
+                <h3>Buscar eventos</h3>
+                <p>Encuentra fácilmente actividades de interés.</p>
+            </div>
+            </div>
+
+            <div class="search-row">
+            <app-buscador id="buscadorEventos" placeholder="Buscar por nombre del evento..."></app-buscador>
+            <button class="btn-secondary" onclick="mostrarTodosEventos()">Mostrar todos</button>
+            </div>
+        </section>
+
+        <section class="events-section" id="events-section">
+            <app-section-header
+                titulo="Eventos disponibles"
+                subtitulo="Consulta los detalles e inscríbete en los eventos activos."
+                center="true">
+            </app-section-header>
+
+            <app-lista-eventos modo="coordinador" id="listaEventos"></app-lista-eventos>
+        </section>
+        </main>
+    </div>
+    <script src="../js/components.js"></script>
+    <script src="../js/coordinador.js"></script>
+    </body>
+    </html>
