@@ -116,3 +116,7 @@
         padding: 20px;
     }
     }
+
+    #stats-section {
+    scroll-margin-top: 90px;
+}
