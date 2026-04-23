@@ -319,7 +319,7 @@ class AppSidebar extends HTMLElement {
                 </div>
 
                 <nav class="sidebar-menu">
-                    <a href="#stats-section" class="menu-item active" id="btnDashboard">
+                    <a href="#" class="menu-item active" id="btnDashboard">
                         <span>📊</span>
                         <span>Dashboard</span>
                     </a>
@@ -353,24 +353,26 @@ class AppSidebar extends HTMLElement {
         }
 
         if (cerrar) {
-            cerrar.addEventListener("click", (e) => {
-                e.preventDefault();
+            cerrar.addEventListener("click", () => {
                 if (typeof cerrarSesion === "function") {
                     cerrarSesion();
                 }
             });
         }
-
         if (dashboard) {
             dashboard.addEventListener("click", (e) => {
+                e.preventDefault();
+
                 const usuario = JSON.parse(localStorage.getItem("usuario")) || {};
                 const rol = Number(usuario.rol || usuario.id_rol);
 
-                // ADMIN = abre modal
+                // ADMIN
                 if (rol === 3) {
-                    e.preventDefault();
-
                     const modal = document.getElementById("modal");
+
+                    console.log("ROL ADMIN:", rol);
+                    console.log("MODAL ENCONTRADO:", modal);
+
                     if (modal && typeof modal.abrir === "function") {
                         modal.abrir(`
                             <div class="form-card">
@@ -393,16 +395,23 @@ class AppSidebar extends HTMLElement {
                                 </div>
                             </div>
                         `);
+                    } else {
+                        console.log("No se encontró app-modal o no tiene abrir()");
                     }
                 }
 
-                // ESTUDIANTE y COORDINADOR:
-                // NO hacemos preventDefault para que el href="#stats-section"
-                // los lleve a las estadísticas
+                // ESTUDIANTE Y COORDINADOR
+                else {
+                    const statsSection = document.getElementById("stats-section");
+                    if (statsSection) {
+                        statsSection.scrollIntoView({ behavior: "smooth" });
+                    }
+                }
             });
         }
     }
 }
+
 
 customElements.define("app-sidebar", AppSidebar);
 
