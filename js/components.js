@@ -362,32 +362,46 @@ class AppSidebar extends HTMLElement {
 
         if (dashboard) {
             dashboard.addEventListener("click", (e) => {
-                e.preventDefault();
+                const usuario = JSON.parse(localStorage.getItem("usuario")) || {};
+                const rol = Number(usuario.id_rol);
 
-                // Solo abrir modal si existe en la página (admin)
-                const modal = document.getElementById("modal");
-                if (modal && typeof modal.abrir === "function") {
-                    modal.abrir(`
-                        <div class="form-card">
-                            <h3 class="form-title">Dashboard Power BI</h3>
-                            <div style="margin-top: 16px;">
-                                <p style="margin-bottom: 12px; color: #475569;">
-                                    Aquí se visualizará el dashboard de Power BI.
-                                </p>
-                                <iframe
-                                    src=""
-                                    width="100%"
-                                    height="500"
-                                    frameborder="0"
-                                    allowFullScreen="true"
-                                    style="border-radius: 12px; background: #f8fafc;">
-                                </iframe>
+                // Admin abre modal
+                if (rol === 3) {
+                    e.preventDefault();
+
+                    const modal = document.getElementById("modal");
+                    if (modal && typeof modal.abrir === "function") {
+                        modal.abrir(`
+                            <div class="form-card">
+                                <h3 class="form-title">Dashboard Power BI</h3>
+                                <div style="margin-top: 16px;">
+                                    <p style="margin-bottom: 12px; color: #475569;">
+                                        Aquí se visualizará el dashboard de Power BI.
+                                    </p>
+                                    <iframe
+                                        src=""
+                                        width="100%"
+                                        height="500"
+                                        frameborder="0"
+                                        allowFullScreen="true"
+                                        style="border-radius: 12px; background: #f8fafc;">
+                                    </iframe>
+                                </div>
+                                <div class="form-actions">
+                                    <button class="btn-cancel" onclick="cerrarModal()">Cerrar</button>
+                                </div>
                             </div>
-                            <div class="form-actions">
-                                <button class="btn-cancel" onclick="cerrarModal()">Cerrar</button>
-                            </div>
-                        </div>
-                    `);
+                        `);
+                    }
+                } 
+                
+                // Estudiante y coordinador bajan a estadísticas
+                else {
+                    e.preventDefault();
+                    const statsSection = document.getElementById("stats-section");
+                    if (statsSection) {
+                        statsSection.scrollIntoView({ behavior: "smooth" });
+                    }
                 }
             });
         }
