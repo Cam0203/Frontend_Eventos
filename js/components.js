@@ -306,6 +306,9 @@ customElements.define("app-stats-card", AppStatsCard);
 //SIDEBARD//
 class AppSidebar extends HTMLElement {
     connectedCallback() {
+        const usuario = JSON.parse(localStorage.getItem("usuario")) || {};
+        const rol = Number(usuario.id_rol);
+
         this.innerHTML = `
             <aside class="sidebar collapsed">
                 <div class="sidebar-top">
@@ -319,7 +322,7 @@ class AppSidebar extends HTMLElement {
                 </div>
 
                 <nav class="sidebar-menu">
-                    <a href="#" class="menu-item active" id="btnDashboard">
+                    <a href="#stats-section" class="menu-item active" id="btnDashboard">
                         <span>📊</span>
                         <span>Dashboard</span>
                     </a>
@@ -337,10 +340,10 @@ class AppSidebar extends HTMLElement {
             </aside>
         `;
 
-        this.inicializarEventos();
+        this.inicializarEventos(rol);
     }
 
-    inicializarEventos() {
+    inicializarEventos(rol) {
         const sidebar = this.querySelector("aside");
         const toggle = this.querySelector("#sidebarToggle");
         const cerrar = this.querySelector("#btnCerrarSesion");
@@ -353,18 +356,19 @@ class AppSidebar extends HTMLElement {
         }
 
         if (cerrar) {
-            cerrar.addEventListener("click", () => {
+            cerrar.addEventListener("click", (e) => {
+                e.preventDefault();
                 if (typeof cerrarSesion === "function") {
                     cerrarSesion();
                 }
             });
         }
 
-        if (dashboard) {
+        // SOLO ADMIN abre modal
+        if (dashboard && rol === 3) {
             dashboard.addEventListener("click", (e) => {
                 e.preventDefault();
 
-                // Solo abrir modal si existe en la página (admin)
                 const modal = document.getElementById("modal");
                 if (modal && typeof modal.abrir === "function") {
                     modal.abrir(`
@@ -393,7 +397,6 @@ class AppSidebar extends HTMLElement {
         }
     }
 }
-
 
 customElements.define("app-sidebar", AppSidebar);
 
