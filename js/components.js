@@ -56,22 +56,28 @@ class EventCard extends HTMLElement {
                             <button class="btn-edit" onclick="editarEvento(${data.id})">Editar</button>
                             <button class="btn-secondary" onclick="verInscritos(${data.id}, '${data.nombre}', '${data.fecha}')">Ver inscritos</button>
                         `
-                        : modo === "coordinador"
-                        ? `
-                            <button class="btn-secondary" onclick="verInscritos(${data.id}, '${data.nombre}', '${data.fecha}')">
-                                Ver inscritos
-                            </button>
-                        `
                         : `
                             <button 
-                                id="btn-${data.id}"
                                 class="${data.inscrito ? 'btn-inscrito' : 'btn-inscribir'}"
-                                onclick="${data.inscrito ? `cancelarInscripcion(${data.id})` : `inscribirse(${data.id})`}"
-                                ${data.lleno && !data.inscrito ? "disabled" : ""}
+                                onclick="${
+                                    data.estado === 'Finalizado'
+                                        ? ''
+                                        : data.inscrito
+                                            ? `cancelarInscripcion(${data.id})`
+                                            : `inscribirse(${data.id})`
+                                }"
+                                ${(
+                                    (data.lleno && !data.inscrito) ||
+                                    data.estado === 'Finalizado'
+                                ) ? "disabled" : ""}
                             >
-                                ${data.lleno && !data.inscrito 
-                                    ? "Evento lleno" 
-                                    : (data.inscrito ? "Cancelar inscripción" : "Inscribirme")}
+                                ${
+                                    data.estado === "Finalizado"
+                                        ? "Evento finalizado"
+                                        : data.lleno && !data.inscrito
+                                            ? "Evento lleno"
+                                            : (data.inscrito ? "Cancelar inscripción" : "Inscribirme")
+                                }
                             </button>
                         `
                     }
@@ -300,47 +306,6 @@ customElements.define("app-stats-card", AppStatsCard);
 //SIDEBARD//
 class AppSidebar extends HTMLElement {
     connectedCallback() {
-
-        const usuario = JSON.parse(localStorage.getItem("usuario")) || {};
-        const rol = Number(usuario.id_rol);
-
-        let menuItems = "";
-
-        // 🔵 ADMIN (id_rol = 3)
-        if (rol === 3) {
-            menuItems = `
-                <a href="#" class="menu-item active" id="btnDashboard">
-                    <span>📊</span>
-                    <span>Dashboard</span>
-                </a>
-
-                <a href="#events-section" class="menu-item">
-                    <span>📅</span>
-                    <span>Eventos</span>
-                </a>
-            `;
-        }
-
-        // 🟢 ESTUDIANTE (id_rol = 1)
-        else if (rol === 1) {
-            menuItems = `
-                <a href="#events-section" class="menu-item active">
-                    <span>📅</span>
-                    <span>Eventos</span>
-                </a>
-            `;
-        }
-
-        // 🟡 COORDINADOR (id_rol = 5)
-        else if (rol === 5) {
-            menuItems = `
-                <a href="#events-section" class="menu-item active">
-                    <span>📋</span>
-                    <span>Supervisión</span>
-                </a>
-            `;
-        }
-
         this.innerHTML = `
             <aside class="sidebar collapsed">
                 <div class="sidebar-top">
@@ -354,7 +319,15 @@ class AppSidebar extends HTMLElement {
                 </div>
 
                 <nav class="sidebar-menu">
-                    ${menuItems}
+                    <a href="#" class="menu-item active" id="btnDashboard">
+                        <span>📊</span>
+                        <span>Dashboard</span>
+                    </a>
+
+                    <a href="#events-section" class="menu-item">
+                        <span>📅</span>
+                        <span>Eventos</span>
+                    </a>
 
                     <a href="#" class="menu-item" id="btnCerrarSesion">
                         <span>🚪</span>
@@ -387,24 +360,27 @@ class AppSidebar extends HTMLElement {
             });
         }
 
-        // SOLO ADMIN tiene dashboard
         if (dashboard) {
             dashboard.addEventListener("click", (e) => {
                 e.preventDefault();
 
+                // Solo abrir modal si existe en la página (admin)
                 const modal = document.getElementById("modal");
                 if (modal && typeof modal.abrir === "function") {
                     modal.abrir(`
                         <div class="form-card">
                             <h3 class="form-title">Dashboard Power BI</h3>
                             <div style="margin-top: 16px;">
+                                <p style="margin-bottom: 12px; color: #475569;">
+                                    Aquí se visualizará el dashboard de Power BI.
+                                </p>
                                 <iframe
                                     src=""
                                     width="100%"
                                     height="500"
                                     frameborder="0"
                                     allowFullScreen="true"
-                                    style="border-radius: 12px;">
+                                    style="border-radius: 12px; background: #f8fafc;">
                                 </iframe>
                             </div>
                             <div class="form-actions">
@@ -418,7 +394,9 @@ class AppSidebar extends HTMLElement {
     }
 }
 
+
 customElements.define("app-sidebar", AppSidebar);
+
 //TOPBARD//
 class AppTopbar extends HTMLElement {
     connectedCallback() {
