@@ -1,11 +1,4 @@
 
-    .user-badge {
-    background: white;
-    padding: 12px 18px;
-    border-radius: var(--radio-pill);
-    box-shadow: var(--sombra-suave);
-    border: 1px solid #e3edf9;
-    }
 
     .user-role {
     font-weight: 600;
