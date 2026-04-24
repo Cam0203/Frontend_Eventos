@@ -205,11 +205,23 @@ async function inscribirse(id_evento) {
             };
         }
 
+        const resEvento = await fetch(`${BASE_URL}/eventos/${id_evento}`);
+        const evento = resEvento.ok ? await resEvento.json() : null;
+
         await enviarNotificacionCorreo(
-        "andreasaenz0203@gmail.com",
-        "Nueva inscripción - Sistema Eventos CUL",
-        `El estudiante ${usuario.usuario} se inscribió al evento con ID ${id_evento}.`
-    );
+            "andreasaenz0203@gmail.com",
+            "Nueva inscripción - Sistema Eventos CUL",
+            `
+        Nueva inscripción registrada.
+
+        Estudiante: ${usuario.usuario || "No disponible"}
+        Apellido: ${usuario.apellido || "No disponible"}
+        Programa: ${usuario.programa || "No disponible"}
+        Evento: ${evento?.nombre || "No disponible"}
+        Fecha del evento: ${evento?.fecha || "No disponible"}
+        Hora: ${evento?.hora || "No disponible"}
+            `
+        );
 
     } catch (error) {
         console.log("Error al inscribirse:", error);
