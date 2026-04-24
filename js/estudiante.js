@@ -205,6 +205,12 @@ async function inscribirse(id_evento) {
             };
         }
 
+        await enviarNotificacionCorreo(
+        "andreasaenz0203@gmail.com",
+        "Nueva inscripción - Sistema Eventos CUL",
+        `El estudiante ${usuario.usuario} se inscribió al evento con ID ${id_evento}.`
+    );
+
     } catch (error) {
         console.log("Error al inscribirse:", error);
         mostrarAlerta("Error al conectar con el servidor", "error");
