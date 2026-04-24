@@ -1,0 +1,119 @@
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel Administrador - CUL</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/admin.css" />
+    </head>
+
+    <body>
+
+    <div id="alerta-container"></div>
+
+    <app-modal id="modal"></app-modal>
+
+    <div class="admin-layout">
+
+    <app-sidebar></app-sidebar>
+
+        <!-- Main -->
+        <main class="main-content">
+        <app-topbar
+            titulo="Panel Administrador"
+            subtitulo="Administra eventos institucionales de forma ágil y profesional">
+        </app-topbar>
+
+        <!-- Hero -->
+        <section class="hero-card">
+            <div class="hero-overlay">
+            <div class="hero-text">
+                <h2>Gestión centralizada de eventos CUL</h2>
+                <p>
+                Organiza, consulta y administra actividades académicas, conferencias,
+                talleres y encuentros institucionales desde un entorno visual y moderno.
+                </p>
+            </div>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section class="stats-grid" id="stats-section">
+            <app-stats-card 
+            tipo="total" 
+            titulo="Total de eventos" 
+            icono="📌">
+        </app-stats-card>
+
+        <app-stats-card 
+            tipo="activos" 
+            titulo="Eventos activos" 
+            icono="✅">
+        </app-stats-card>
+
+        <app-stats-card 
+            tipo="proximos" 
+            titulo="Próximos eventos" 
+            icono="⏳">
+        </app-stats-card>
+        </section>
+
+        <!-- Search and actions -->
+        <section class="tools-card">
+            <div class="tools-header">
+            <div>
+                <h3>Gestión rápida</h3>
+                <p>Busca y administra los eventos registrados en el sistema.</p>
+            </div>
+            <button class="btn-primary" onclick="mostrarFormulario()">+ Crear evento</button>
+            </div>
+
+            <div class="search-row">
+            <app-buscador id="buscadorEventos"></app-buscador>
+            
+            <button class="btn-secondary" onclick="mostrarTodosEventos()">Mostrar todos</button>
+
+            <button onclick="eliminarUsuario()">Eliminar usuario</button>
+            <button onclick="generarReporte()">Generar reporte</button>
+            </div>
+
+        </section>
+
+
+        <!-- Event list -->
+        <section class="events-section" id="events-section">
+            <app-section-header
+                titulo="Eventos registrados"
+                subtitulo="Listado general de eventos creados en la plataforma."
+                center="true">
+            </app-section-header>
+
+            
+            <div class="filters-row">
+                <label for="filtroEstado" class="filter-label">Filtrar por estado:</label>
+                <select id="filtroEstado" class="filter-select" onchange="filtrarPorEstado(this.value)">
+                    <option value="todos">Todos</option>
+                    <option value="Programado">Programados</option>
+                    <option value="Finalizado">Finalizados</option>
+                    <option value="Cancelado">Cancelados</option>
+                </select>
+                </div>
+
+            <app-lista-eventos id="listaEventos"></app-lista-eventos>
+        </section>
+        </main>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="../js/admin.js"></script>
+    </body>
+    </html>

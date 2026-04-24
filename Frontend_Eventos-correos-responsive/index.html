@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<!-- Configuración básica de la página -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Título que aparece en la pestaña del navegador -->
+<title>Gestión de Eventos CUL</title>
+
+<!-- Conexión con el archivo de estilos CSS -->
+<link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+
+<body>
+
+
+<!-- Video de fondo que se muestra en toda la página -->
+
+<div class="video-fondo">
+
+<video autoplay muted loop>
+<source src="video/cul.mp4" type="video/mp4">
+</video>
+
+<!-- Capa oscura para mejorar la visibilidad del texto -->
+<div class="overlay"></div>
+
+</div>
+
+
+<!-- Barra superior decorativa -->
+
+<div class="top-bar"></div>
+
+
+<!-- Encabezado de la página -->
+
+<header>
+    <img src="img/logo.png" alt="Logo CUL">
+
+    <input type="checkbox" id="menu-check">
+    <label for="menu-check" class="menu-btn">☰</label>
+
+    <nav class="menu-nav">
+        <ul>
+            <li><a href="#">Eventos</a></li>
+            <li><a href="html/coordinador.html">Crear evento</a>
+            <li><a href="html/login.html">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+<!-- Sección principal donde se presenta el sistema -->
+
+<section class="hero">
+
+<h1>GESTIÓN DE EVENTOS UNIVERSIDAD CUL</h1>
+
+<p>Organiza conferencias, talleres y actividades estudiantiles</p>
+
+</section>
+
+
+
+<!-- Sección donde se muestran los eventos -->
+
+<section class="eventos">
+
+<h2>Próximos Eventos</h2>
+
+
+<!-- Contenedor donde van todas las tarjetas de eventos -->
+
+<div class="contenedor-eventos">
+
+
+
+<!-- Tarjeta del evento 1 -->
+
+<div class="evento-card">
+
+<div class="evento-img">
+<img src="img/img3.png">
+</div>
+
+<div class="evento-info">
+
+<!-- Fecha del evento -->
+
+<div class="evento-fecha">
+
+<span class="dia">24</span>
+<span class="mes">SEP</span>
+
+</div>
+
+
+<!-- Información del evento -->
+
+<div class="evento-texto">
+
+<h3>Seminario de Innovación Empresarial y Transformación Digital</h3>
+
+<p class="hora">08:00 am - 12:00 pm</p>
+
+<p class="lugar">Auditorio principal – CUL</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- Tarjeta del evento 2 -->
+
+<div class="evento-card">
+
+<div class="evento-img">
+<img src="img/img2.png">
+</div>
+
+<div class="evento-info">
+
+<div class="evento-fecha">
+
+<span class="dia">23</span>
+<span class="mes">AGO</span>
+
+</div>
+
+<div class="evento-texto">
+
+<h3>Feria de Emprendimiento CUL 2026</h3>
+
+<p class="hora">09:00am – 4:00pm</p>
+
+<p class="lugar">Centro de Convenciones – CUL</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- Tarjeta del evento 3 -->
+
+<div class="evento-card">
+
+<div class="evento-img">
+<img src="img/img1.png">
+</div>
+
+<div class="evento-info">
+
+<div class="evento-fecha">
+
+<span class="dia">05</span>
+<span class="mes">JUN</span>
+
+</div>
+
+<div class="evento-texto">
+
+<h3>Encuentro Empresarial y Networking Profesional</h3>
+
+<p class="hora">09:00 am – 01:00 pm</p>
+
+<p class="lugar">Sala múltiple – CUL</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- Pie de página donde se muestra información institucional -->
+
+<footer class="footer">
+
+<div class="footer-contenedor">
+
+
+<!-- Información de contacto -->
+
+<div class="footer-info">
+
+<h3>Bienestar Universitario - CUL</h3>
+
+<p>Dirección: Cra 58 #55 - 24 A, Nte. Centro Histórico, Barranquilla, Atlántico, Colombia</p>
+
+<p>Teléfono: (605) 344 2276</p>
+
+<p>Correo: promocion@uledu.co</p>
+
+<p>Horario: Lunes a Viernes, 8:00 a.m. - 6:00 p.m.</p>
+
+</div>
+
+
+
+<!-- Mapa de ubicación de la universidad -->
+
+<div class="footer-mapa">
+
+<iframe
+src="https://www.google.com/maps?q=Corporación+Universitaria+Latinoamericana+CUL+Barranquilla&output=embed"
+width="350"
+height="200"
+style="border:0;border-radius:6px;"
+allowfullscreen=""
+loading="lazy">
+</iframe>
+
+</div>
+
+</div>
+
+
+<!-- Derechos de autor -->
+
+<div class="footer-copy">
+
+<p>© 2025 Bienestar Universitario - Corporación Universitaria Latinoamericana (CUL). Todos los derechos reservados.</p>
+
+</div>
+
+</footer>
+
+<div class="botones-demo-correo">
+    <button onclick="eliminarUsuarioDemo()">Eliminar usuario demo</button>
+    <button onclick="generarReporteDemo()">Generar reporte demo</button>
+    <button onclick="inscripcionEventoDemo()">Inscripción evento demo</button>
+</div>
+
+<!-- Conexión con el archivo JavaScript -->
+
+<script src="js/script.js"></script>
+
+
+</body>
+</html>
