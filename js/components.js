@@ -48,7 +48,6 @@ class EventCard extends HTMLElement {
                     </span>
                 </p>
                 <p><strong>Lugar:</strong> ${data.lugar}</p>
-
                 <div class="event-actions">
                     ${
                         modo === "admin"
@@ -313,7 +312,7 @@ class AppSidebar extends HTMLElement {
                 </div>
 
                 <nav class="sidebar-menu">
-                    <a href="#" class="menu-item active" id="btnDashboard">
+                    <a href="#stats-section" class="menu-item active" id="btnDashboard">
                         <span>📊</span>
                         <span>Dashboard</span>
                     </a>
@@ -357,7 +356,7 @@ class AppSidebar extends HTMLElement {
             dashboard.addEventListener("click", (e) => {
                 e.preventDefault();
 
-                const usuario = JSON.parse(localStorage.getItem("usuario")) || {};
+                const usuario = JSON.parse(sessionStorage.getItem("usuario")) || {};
                 const rol = Number(usuario.rol || usuario.id_rol);
 
                 // ADMIN
@@ -434,7 +433,7 @@ class AppTopbar extends HTMLElement {
     }
 
     cargarUsuario() {
-        const usuario = JSON.parse(localStorage.getItem("usuario"));
+        const usuario = JSON.parse(sessionStorage.getItem("usuario"));
 
         if (!usuario) {
             window.location.href = "login.html";

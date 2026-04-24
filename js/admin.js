@@ -729,7 +729,7 @@
 /* ================================= */
 
 function cerrarSesion(){
-    localStorage.removeItem("usuario");
+    sessionStorage.removeItem("usuario");
     window.location.href = "login.html";
 }
 

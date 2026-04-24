@@ -24,7 +24,7 @@
         const data = await respuesta.json();
 
         if (respuesta.ok && data.id_usuario) {
-        localStorage.setItem("usuario", JSON.stringify({
+        sessionStorage.setItem("usuario", JSON.stringify({
             id_usuario: data.id_usuario,
             usuario: data.usuario,
             rol: data.id_rol

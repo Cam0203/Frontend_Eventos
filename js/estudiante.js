@@ -4,7 +4,7 @@ let eventosGlobal = [];
 /* OBTENER USUARIO DEL LOCALSTORAGE  */
 /* ================================= */
 
-const usuario = JSON.parse(localStorage.getItem("usuario"));
+const usuario = JSON.parse(sessionStorage.getItem("usuario"));
 
 if(!usuario){
 window.location.href="login.html";

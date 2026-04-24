@@ -4,10 +4,10 @@ const API_ASISTENCIA = `${BASE_URL}/asistencia`;
 let eventosGlobal = [];
 
 /* ================================= */
-/* OBTENER USUARIO DEL LOCALSTORAGE  */
+/* OBTENER USUARIO DEL sessionStorage  */
 /* ================================= */
 
-const usuario = JSON.parse(localStorage.getItem("usuario"));
+const usuario = JSON.parse(sessionStorage.getItem("usuario"));
 
 if (!usuario) {
     window.location.href = "login.html";
@@ -25,7 +25,7 @@ document.getElementById("bienvenida").innerText =
 /* ================================= */
 
 function cerrarSesion() {
-    localStorage.removeItem("usuario");
+    sessionStorage.removeItem("usuario");
     window.location.href = "login.html";
 }
 
