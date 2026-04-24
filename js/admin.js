@@ -756,11 +756,16 @@ function mostrarTodosEventos() {
 async function descargarReporteEventos() {
     window.open(`${BASE_URL}/reporte/eventos`, "_blank");
 
-    await enviarNotificacionCorreo(
+    const correoEnviado = await enviarNotificacionCorreo(
         "andreasaenz0203@gmail.com",
         "Reporte generado - Sistema Eventos CUL",
         "Se generó correctamente un reporte PDF de eventos desde el panel administrador."
     );
 
-    mostrarAlerta("Reporte generado y notificación enviada", "exito");
+    if (correoEnviado) {
+        mostrarAlerta("Reporte generado y notificación enviada", "exito");
+    } else {
+        mostrarAlerta("Reporte generado, pero no se pudo enviar el correo", "error");
+    }
 }
+
