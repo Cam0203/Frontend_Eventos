@@ -752,3 +752,15 @@ function mostrarTodosEventos() {
     aplicarFiltrosAdmin();
 }
 
+
+async function descargarReporteEventos() {
+    window.open(`${BASE_URL}/reporte/eventos`, "_blank");
+
+    await enviarNotificacionCorreo(
+        "andreasaenz0203@gmail.com",
+        "Reporte generado - Sistema Eventos CUL",
+        "Se generó correctamente un reporte PDF de eventos desde el panel administrador."
+    );
+
+    mostrarAlerta("Reporte generado y notificación enviada", "exito");
+}
