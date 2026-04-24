@@ -375,7 +375,8 @@ class AppSidebar extends HTMLElement {
                                         Aquí se visualizará el dashboard de Power BI.
                                     </p>
                                     <iframe
-                                        src=""
+                                        src="https://app.powerbi.com/reportEmbed?reportId=7ae82849-903a-4c03-b9b1-
+                                        17e348214cc5&autoAuth=true&ctid=740be6bd-fd36-470e-94d9-0f0c777fadb9"
                                         width="100%"
                                         height="500"
                                         frameborder="0"
