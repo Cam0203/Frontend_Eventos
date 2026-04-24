@@ -27,6 +27,8 @@
         sessionStorage.setItem("usuario", JSON.stringify({
             id_usuario: data.id_usuario,
             usuario: data.usuario,
+            apellido: data.apellido,
+            programa: data.programa,
             rol: data.id_rol
         }));
 
