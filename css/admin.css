@@ -399,9 +399,5 @@
     cursor: pointer;
     }
 
-.acciones-admin {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-}
+
 
