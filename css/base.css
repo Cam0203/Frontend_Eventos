@@ -747,3 +747,28 @@
         margin: 0 auto !important;
     }
 }
+/* ========================= */
+/* SCROLL SOLO EN GESTIÓN RÁPIDA MÓVIL */
+/* ========================= */
+
+@media screen and (max-width: 768px) {
+
+    .tools-card {
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .tools-card > * {
+        min-width: 560px;
+    }
+
+    .tools-card::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .tools-card::-webkit-scrollbar-thumb {
+        background: var(--azul-borde);
+        border-radius: 999px;
+    }
+}
