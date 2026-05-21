@@ -64,15 +64,20 @@
         <!-- Search and actions -->
         <section class="tools-card">
             <div class="tools-header">
-            <div>
-                <h3>Gestión rápida</h3>
-                <p>Busca y administra los eventos registrados en el sistema.</p>
-            </div>
-            <button class="btn-primary" onclick="mostrarFormulario()">+ Crear evento</button>
+                <div>
+                    <h3>Gestión rápida</h3>
+                    <p>Busca y administra los eventos registrados en el sistema.</p>
+                </div>
 
-            <button class="btn-secondary" onclick="descargarReporteEventos()">
-                Descargar reporte PDF
-            </button>
+                <div class="acciones-admin">
+                    <button class="btn-primary" onclick="mostrarFormulario()">
+                        + Crear evento
+                    </button>
+
+                    <button class="btn-secondary" onclick="descargarReporteEventos()">
+                        Descargar reporte PDF
+                    </button>
+                </div>
             </div>
 
             <div class="search-row">

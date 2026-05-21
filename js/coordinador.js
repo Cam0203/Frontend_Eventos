@@ -262,6 +262,7 @@ async function verInscritos(id_evento, nombreEvento, fechaEvento) {
                 .replace(/[^\w\-]/g, "");
 
             const tabla = $("#tablaInscritos").DataTable({
+                scrollX: true,
                 pageLength: 5,
                 dom: 'Bfrtip',
                 buttons: [

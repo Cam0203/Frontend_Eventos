@@ -488,3 +488,217 @@
 .modal.active {
     display: flex;
 }
+
+/* ========================= */
+/* RESPONSIVE FINAL MÓVIL */
+/* ========================= */
+
+@media screen and (max-width: 768px) {
+
+    html,
+    body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .admin-layout,
+    .student-layout {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .main-content {
+        width: 100%;
+        padding: 16px 10px !important;
+    }
+
+    /* Sidebar desplegable */
+    .sidebar,
+    .sidebar.collapsed {
+        width: 100% !important;
+        position: relative !important;
+        padding: 16px !important;
+        border-radius: 0 0 20px 20px;
+    }
+
+    .sidebar.collapsed {
+        height: 105px !important;
+        overflow: hidden !important;
+    }
+
+    .sidebar.collapsed .sidebar-menu {
+        display: none !important;
+    }
+
+    .sidebar.collapsed .brand-text {
+        display: block !important;
+    }
+
+    .sidebar .sidebar-menu {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+        margin-top: 16px;
+    }
+
+    .sidebar .menu-item {
+        width: 100%;
+        justify-content: center;
+        padding: 11px 14px !important;
+        min-height: 48px !important;
+    }
+
+    /* Topbar */
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .topbar h1 {
+        font-size: 1.55rem;
+    }
+
+    /* Hero */
+    .hero-overlay {
+        padding: 24px;
+    }
+
+    .hero-text h2 {
+        font-size: 1.45rem;
+    }
+
+    .hero-text p {
+        font-size: 0.92rem;
+    }
+
+    /* Stats */
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    /* Gestión rápida */
+    .tools-card {
+        width: 100%;
+        padding: 18px !important;
+    }
+
+    .tools-header {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+    }
+
+    .acciones-admin {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .acciones-admin button {
+        width: 100%;
+        min-width: 0;
+        font-size: 0.78rem;
+        padding: 11px 8px;
+        white-space: normal;
+    }
+
+    .search-row {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .search-row app-buscador,
+    .search-row app-buscador input,
+    .search-row button {
+        width: 100%;
+        min-width: 0;
+    }
+
+    /* Eventos */
+    .events-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+    }
+
+    .event-card {
+        width: 100%;
+        max-width: 100%;
+        padding: 18px;
+    }
+
+    .event-actions {
+        display: flex;
+        gap: 10px;
+    }
+
+    .event-actions button {
+        flex: 1;
+        padding: 10px;
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
+
+    /* Modal editar / ver inscritos */
+    .modal.active {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        padding: 12px;
+    }
+
+    .modal-content {
+        width: 94vw !important;
+        max-width: 94vw !important;
+        max-height: 90vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 16px !important;
+        border-radius: 18px;
+    }
+
+    .form-card {
+        width: 100%;
+        max-width: 100%;
+        padding: 16px !important;
+    }
+
+    .form-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .form-actions button {
+        width: 100%;
+    }
+
+    .dataTables_wrapper {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    #tablaInscritos {
+        min-width: 520px;
+        font-size: 0.8rem;
+    }
+
+    .dt-buttons,
+    .dataTables_filter,
+    .dataTables_info,
+    .dataTables_paginate {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    button.dt-button {
+        width: 100%;
+        border-radius: 999px;
+    }
+}
+
+
