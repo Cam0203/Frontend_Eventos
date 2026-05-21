@@ -748,26 +748,33 @@
     }
 }
 /* ========================= */
-/* SCROLL SOLO EN GESTIÓN RÁPIDA MÓVIL */
+/* SCROLL HORIZONTAL INDICADORES MÓVIL */
 /* ========================= */
 
 @media screen and (max-width: 768px) {
 
-    .tools-card {
+    .stats-grid {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 14px !important;
         overflow-x: auto !important;
         overflow-y: hidden !important;
+        scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
+        padding-bottom: 8px;
     }
 
-    .tools-card > * {
-        min-width: 560px;
+    .stat-card {
+        min-width: 180px !important;
+        flex: 0 0 180px !important;
+        scroll-snap-align: start;
     }
 
-    .tools-card::-webkit-scrollbar {
+    .stats-grid::-webkit-scrollbar {
         height: 6px;
     }
 
-    .tools-card::-webkit-scrollbar-thumb {
+    .stats-grid::-webkit-scrollbar-thumb {
         background: var(--azul-borde);
         border-radius: 999px;
     }
