@@ -345,3 +345,31 @@
         height: 48px;
     }
     }
+
+    /* ========================= */
+/* LOGIN CENTRADO EN CELULAR */
+/* ========================= */
+
+@media screen and (max-width: 768px){
+
+    body{
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-container,
+    .contenedor-login,
+    .login-card{
+        margin: auto !important;
+    }
+
+    .login-wrapper{
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 0;
+    }
+}
