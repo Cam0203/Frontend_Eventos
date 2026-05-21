@@ -701,4 +701,49 @@
     }
 }
 
+/* FIX TABLA INSCRITOS EN CELULAR */
+@media screen and (max-width: 768px) {
 
+    #tablaInscritos_wrapper {
+        width: 100% !important;
+        overflow-x: auto !important;
+    }
+
+    #tablaInscritos {
+        width: 100% !important;
+        min-width: 620px !important;
+        table-layout: fixed !important;
+    }
+
+    #tablaInscritos th,
+    #tablaInscritos td {
+        text-align: center !important;
+        vertical-align: middle !important;
+        white-space: nowrap !important;
+    }
+
+    #tablaInscritos th:nth-child(1),
+    #tablaInscritos td:nth-child(1) {
+        width: 160px !important;
+    }
+
+    #tablaInscritos th:nth-child(2),
+    #tablaInscritos td:nth-child(2) {
+        width: 190px !important;
+    }
+
+    #tablaInscritos th:nth-child(3),
+    #tablaInscritos td:nth-child(3) {
+        width: 150px !important;
+    }
+
+    #tablaInscritos th:nth-child(4),
+    #tablaInscritos td:nth-child(4) {
+        width: 120px !important;
+    }
+
+    #tablaInscritos td:nth-child(4) input {
+        display: block !important;
+        margin: 0 auto !important;
+    }
+}

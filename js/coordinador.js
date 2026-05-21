@@ -263,6 +263,7 @@ async function verInscritos(id_evento, nombreEvento, fechaEvento) {
 
             const tabla = $("#tablaInscritos").DataTable({
                 scrollX: true,
+                autoWidth: false,
                 pageLength: 5,
                 dom: 'Bfrtip',
                 buttons: [
