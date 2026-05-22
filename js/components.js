@@ -299,6 +299,8 @@ customElements.define("app-stats-card", AppStatsCard);
 //SIDEBARD//
 class AppSidebar extends HTMLElement {
     connectedCallback() {
+        const usuario = JSON.parse(sessionStorage.getItem("usuario")) || {};
+        const rol = Number(usuario.rol || usuario.id_rol);
         this.innerHTML = `
             <aside class="sidebar collapsed">
                 <div class="sidebar-top">
@@ -322,6 +324,13 @@ class AppSidebar extends HTMLElement {
                         <span>Eventos</span>
                     </a>
 
+                    ${rol === 3 ? `
+                    <a href="#" class="menu-item" id="btnPowerBI">
+                        <span>📈</span>
+                        <span>Power BI</span>
+                    </a>
+                    ` : ""}
+
                     <a href="#" class="menu-item" id="btnCerrarSesion">
                         <span>🚪</span>
                         <span>Cerrar sesión</span>
@@ -338,13 +347,22 @@ class AppSidebar extends HTMLElement {
         const toggle = this.querySelector("#sidebarToggle");
         const cerrar = this.querySelector("#btnCerrarSesion");
         const dashboard = this.querySelector("#btnDashboard");
+        const powerBI = this.querySelector("#btnPowerBI");
 
         if (toggle) {
             toggle.addEventListener("click", () => {
                 sidebar.classList.toggle("collapsed");
             });
         }
+        if (powerBI) {
+            powerBI.addEventListener("click", (e) => {
 
+                e.preventDefault();
+
+                window.open("powerbi.html", "_blank");
+
+            });
+        }
         if (cerrar) {
             cerrar.addEventListener("click", () => {
                 if (typeof cerrarSesion === "function") {
@@ -359,41 +377,17 @@ class AppSidebar extends HTMLElement {
                 const usuario = JSON.parse(sessionStorage.getItem("usuario")) || {};
                 const rol = Number(usuario.rol || usuario.id_rol);
 
-                // ADMIN
+               // ADMIN
                 if (rol === 3) {
-                    const modal = document.getElementById("modal");
 
-                    console.log("ROL ADMIN:", rol);
-                    console.log("MODAL ENCONTRADO:", modal);
+                    const statsSection = document.getElementById("stats-section");
 
-                    if (modal && typeof modal.abrir === "function") {
-                        modal.abrir(`
-                            <div class="form-card">
-                                <h3 class="form-title">Dashboard Power BI</h3>
-                                <div style="margin-top: 16px;">
-                                    <p style="margin-bottom: 12px; color: #475569;">
-                                        Aquí se visualizará el dashboard de Power BI.
-                                    </p>
-                                    <iframe
-                                        src="https://app.powerbi.com/reportEmbed?reportId=7ae82849-903a-4c03-b9b1-
-                                        17e348214cc5&autoAuth=true&ctid=740be6bd-fd36-470e-94d9-0f0c777fadb9"
-                                        width="100%"
-                                        height="500"
-                                        frameborder="0"
-                                        allowFullScreen="true"
-                                        style="border-radius: 12px; background: #f8fafc;">
-                                    </iframe>
-                                </div>
-                                <div class="form-actions">
-                                    <button class="btn-cancel" onclick="cerrarModal()">Cerrar</button>
-                                </div>
-                            </div>
-                        `);
-                    } else {
-                        console.log("No se encontró app-modal o no tiene abrir()");
+                    if (statsSection) {
+                        statsSection.scrollIntoView({
+                            behavior: "smooth"
+                        });
                     }
                 }
-
                 // ESTUDIANTE Y COORDINADOR
                 else {
                     const statsSection = document.getElementById("stats-section");
